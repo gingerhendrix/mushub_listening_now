@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Msuhub Client - Unit Tests</title>
+    
+    <!-- Test Dependencies -->
+    <script type="text/javascript" src="lib/monkeytest.js"></script>
+    <script type="text/javascript" src="lib/jsmock.js"></script>
+    <script type="text/javascript" src="test_helper.js"></script>
+    
+    <!-- Library Dependencies -->    
+    <script type="text/javascript" src="../lib/jsUtils.js"></script>
+
+    <!-- Package Dependencies -->
+    <script type="text/javascript" src="../js/utils/webservice.js"></script>
+    <!-- Package under test -->
+    <script type="text/javascript" src="../js/utils/datasource.js"></script>
+    
+    <!-- Tests -->
+    <script type="text/javascript" src="unit/datasource_test.js"></script>
+    
+    <script type="text/javascript">
+      function start(){
+         TestManager.run();
+      }
+    </script>
+    
+  </head>
+  <body onload="start();">
+    
+  </body>
+</html>
