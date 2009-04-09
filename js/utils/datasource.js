@@ -1,4 +1,4 @@
-Utils.namespace("Utils", {
+Utils.namespace("mushub.client.utils", {
   /**
    * Datasource is a wrapper around a json resource.
    * It has a single update method that should be called be client, 
@@ -9,10 +9,13 @@ Utils.namespace("Utils", {
    *
    */
   Datasource : function(config){
+    config = config || {params : []};
+    
     Utils.extend(this, new Utils.DataBean());
     
     this.isLoading = false;
     this.isLoaded = false;
+    this.isError = false;
      
     function makeParams(self, params){
       var paramObj = {}
@@ -33,15 +36,11 @@ Utils.namespace("Utils", {
       }
       Utils.signals.signal(this, "beginUpdate");
       this.isLoading = true;
-      try{
-        params = makeParams(this, config.params);
-      }catch(e){
-        return;
-      }
-      var url = Utils.Webservice.url(config.service, params);
-      var d = sendJSONPRequest(url, "jsonp");
+//    var params = makeParams(this, config.params);
+
+      var url = mushub.Webservice.url(config.service, config.params);
       var self = this;
-      d.addCallback(function(response){
+      var callback = function(response){
           console.log("Datasource[anonymous callback] : %o : %o", self, response);
           if(response.status==202){
              window.setTimeout(function(){ self.isLoading = false; self.update();}, 1000);
@@ -56,15 +55,20 @@ Utils.namespace("Utils", {
             self.onUpdate(response.data);
             Utils.signals.signal(self, "endUpdate");
           }
-      });
-      d.addErrback(function(response){
+      };
+      
+      var errback = function(response){
         self.isError = true;
         self.isLoading = false;
         Utils.signals.signal(self, "onError", response);
         //self.onUpdate(response);
         console.error("Datasource[anon errback] : %o : %o", self, response);
-      });
-      return d;
+      };
+      Utils.http.scriptRequest(url, "jsonp", callback, errback);
+    }
+    
+    this.onUpdate = function(response){
+      this.data = response;
     }
 
   }

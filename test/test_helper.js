@@ -1,3 +1,10 @@
+
+mushub.Webservice.SERVER = "http://localhost:4567";
+
+jack.env.report = function(message){
+  throw new Error(message);
+}
+
 function assertObjectEquals(t, var1, var2, msg) {
     var type;
     var msg = msg || '';
@@ -30,3 +37,4 @@ function assertObjectEquals(t, var1, var2, msg) {
       t.assert(isEqualType, msg + " Expected " + typeof(var1) + " but was " + typeof(var2));
     }
 }
+

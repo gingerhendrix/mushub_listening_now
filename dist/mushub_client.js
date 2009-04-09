@@ -1,5 +1,5 @@
 
-Utils.namespace("Utils", {
+Utils.namespace("mushub.client.utils", {
   /**
    * Datasource is a wrapper around a json resource.
    * It has a single update method that should be called be client,
