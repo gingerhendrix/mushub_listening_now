@@ -4,7 +4,7 @@ Utils.namespace("mushub.model.audioscrobbler", {
     this.artist = artist.name;
     Utils.extend(this, new mushub.client.utils.Datasource(
                                        { service : "audioscrobbler/similar_artists",
-                                         params : [{name: "artist", value : artist.name}]
+                                         params : ["artist"]
                                        }));   
 
     this.makeProp("similar_artists");

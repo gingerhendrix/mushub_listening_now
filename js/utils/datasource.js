@@ -17,16 +17,24 @@ Utils.namespace("mushub.client.utils", {
     this.isLoaded = false;
     this.isError = false;
      
-    function makeParams(self, params){
-      var paramObj = {}
-      params.forEach(function(param){
+    function makeParams(self, ps){
+      var params = [];
+      ps.forEach(function(param){
+        var paramObj = {}
         if(typeof param == "string"){
-          paramObj[param] = self[param];
+          paramObj.name = param;
+          paramObj.value = self[param];
         }else{
-          paramObj[param.name] = self[param.prop];
+          paramObj.name = param.name;
+          if(param.prop){
+            paramObj.value = self[param.prop];
+          }else{
+            paramObj.value = param.value;
+          }
         }
+        params.push(paramObj)
       });
-      return paramObj;
+      return params;
     }
     
     this.update = function(){
@@ -36,9 +44,9 @@ Utils.namespace("mushub.client.utils", {
       }
       Utils.signals.signal(this, "beginUpdate");
       this.isLoading = true;
-//    var params = makeParams(this, config.params);
-
-      var url = mushub.Webservice.url(config.service, config.params);
+      var params = makeParams(this, config.params);
+      console.log("Params : %o => %o ", config.params, params);
+      var url = mushub.Webservice.url(config.service, params);
       var self = this;
       var callback = function(response){
           console.log("Datasource[anonymous callback] : %o : %o", self, response);
