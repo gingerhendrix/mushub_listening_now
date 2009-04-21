@@ -1,7 +1,7 @@
 
 Utils.namespace("mushub.model.wikipedia", { 
   WikipediaDatasource : function(artist){
-    Utils.extend(this, new Datasource(
+    Utils.extend(this, new mushub.client.utils.Datasource(
                                        { service : "wikipedia/content",
                                          params : ["url"]
                                        }));      
@@ -16,7 +16,7 @@ Utils.namespace("mushub.model.wikipedia", {
     }                    
     
     this.updateMusicbrainz = function(){
-      artist.musicbrainz_links.connect("endUpdate", this, this.updateUrl);
+      artist.musicbrainz_links.connect("endUpdate", this.updateUrl);
       artist.musicbrainz_links.update();
     }
     

@@ -2,9 +2,9 @@
 Utils.namespace("mushub.model.musicbrainz", { 
   ArtistMembersDatasource : function(artist){
     this.artist_mbid = artist.mbid;
-    Utils.extend(this, new Datasource(
+    Utils.extend(this, new mushub.client.utils.Datasource(
                                        { service : "musicbrainz/artist_members",
-                                         params : [{ name : "artist_mbid", prop : "artist_mbid" }]
+                                         params : [{ name : "artist_mbid", value : artist.mbid }]
                                        }));                                      
                     
     this.makeProp("artist_relations");

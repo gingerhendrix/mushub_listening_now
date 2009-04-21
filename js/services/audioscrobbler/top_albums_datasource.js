@@ -1,9 +1,9 @@
 Utils.namespace("mushub.model.audioscrobbler", {
   TopAlbumsDatasource : function(artist){
     this.artist = artist.name;
-    Utils.extend(this, new Datasource(
+    Utils.extend(this, new mushub.client.utils.Datasource(
                                        { service : "audioscrobbler/top_albums",
-                                         params : ["artist"]
+                                         params : [{name : "artist", value : artist.name}]
                                        }));  
  
     this.makeProp("top_albums");
