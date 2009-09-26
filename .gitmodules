@@ -1,0 +1,6 @@
+[submodule "services"]
+	path = services
+	url = git@github.com:gingerhendrix/json_services.git
+[submodule "js/json_services"]
+	path = js/json_services
+	url = git@github.com:gingerhendrix/json_services_clients.git
