@@ -1,0 +1,7 @@
+
+<%= include 'utils/datasource.js' %>
+<%= include 'utils/webservice.js' %>
+
+<% Dir.glob(File.dirname(__FILE__) + "/services/**/*.js") do |service| %>
+  <%= include service %>
+<% end %>
