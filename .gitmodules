@@ -1,0 +1,15 @@
+[submodule "vendor/gems/json_proxy"]
+	path = vendor/gems/json_proxy
+	url = git://github.com/gingerhendrix/json_proxy.git
+[submodule "vendor/gems/scrobbler"]
+	path = vendor/gems/scrobbler
+	url = git://github.com/gingerhendrix/scrobbler.git
+[submodule "vendor/gems/rbrainz"]
+	path = vendor/gems/rbrainz
+	url = git://github.com/gingerhendrix/rbrainz
+[submodule "vendor/gems/yahoo-music"]
+	path = vendor/gems/yahoo-music
+	url = git://github.com/mattt/yahoo-music.git
+[submodule "vendor/gems/echonest"]
+	path = vendor/gems/echonest
+	url = git://github.com/gingerhendrix/echonest.git

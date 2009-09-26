@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# Mushub Json Proxy startup script
+#
+
+require File.dirname(__FILE__) + '/../config/startup.rb'
+
+# Rack::ShowExceptions.new
+app = Rack::Reloader.new Server::Server.new 
+
+Rack::Handler::Mongrel.run(app, :Port => 4567) do |server|
+  puts "==  mushub_services running on port 4567"
+  trap("INT") do
+    puts "\n== Good night."
+    exit()
+  end
+end
+
